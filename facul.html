@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VIT-AP University Portal</title>
+  <style>
+     /* Logo Section */
+    .logo-container {
+      text-align: center;
+      padding: 15px;
+      background: white;
+      border-bottom: 2px solid #ccc;
+    }
+    .logo-container img {
+      height: 100px;
+    }
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f3f7f7; }
+    h1, h2 { text-align: center; color: #333; }
+    ul { max-width: 700px; margin: 20px auto; color: #555; line-height: 1.6; }
+    li { margin: 8px 0; }
+    .page { display: none; }
+    .active { display: block; }
+    .center { text-align: center; margin-top: 30px; }
+
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 25px;
+      background: white;
+      border: 2px solid #4CAF50;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* Role selection */
+    .role-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .role-box {
+      width: 200px;
+      height: 200px;
+      border: 2px solid #4CAF50;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .role-box:hover {
+      background: #e8f5e9;
+      transform: scale(1.05);
+    }
+    .role-box img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    .role-box span {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Forms */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    input {
+      padding: 10px;
+      margin: 8px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-btn, .back-btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .back-btn { background: #f44336; }
+    .form-btn:hover { background: #45a049; }
+    .back-btn:hover { background: #d32f2f; }
+
+    /* Profile box */
+    .profile-box {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .profile-box h3 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 15px;
+    }
+    .profile-box ul { color: #333; }
+    .issue-box { margin-top: 20px; }
+    .issue { background: #f9f9f9; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src=https://www.vitap.ac.in/_next/static/media/vitaplogored.b14c9929.png alt="VIT-AP Logo">
+  </div>
+
+
+  <!-- Home Page -->
+  <div id="homePage" class="page active">
+    <div class="container">
+      <h1>VIT-AP University</h1>
+      <div class="role-container">
+        <div class="role-box" onclick="showPage('studentLogin')">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="Student">
+          <span>Student</span>
+        </div>
+        <div class="role-box" onclick="showPage('facultyLogin')">
+          <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" alt="Faculty">
+          <span>Faculty</span>
+        </div>
+      </div>
+      <ul>
+        <li>Located in Amaravati, Andhra Pradesh, offering world-class education.</li>
+        <li>Provides modern infrastructure, labs, and research facilities.</li>
+        <li>Encourages innovation, entrepreneurship, and skill development.</li>
+        <li>Vibrant campus life with clubs, cultural activities, and sports.</li>
+        <li>Dedicated faculty to ensure academic excellence and mentorship.</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Student Login Page -->
+  <div id="studentLogin" class="page">
+    <div class="container">
+      <h2>Student Login</h2>
+      <form id="studentLoginForm">
+        <input type="text" id="regNo" placeholder="Registration Number (22BCE1234)" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit" class="form-btn">Login</button>
+      </form>
+      <div class="center">
+        <button class="back-btn" onclick="showPage('homePage')">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Student Profile Page -->
+  <div id="studentProfile" class="page">
+    <div class="container">
+      <div class="profile-box">
+        <h3 id="studentName">Student Profile</h3>
+        <ul>
+          <li><strong>Attendance:</strong> <span id="attendance"></span></li>
+          <li><strong>Classes:</strong> <span id="classes"></span></li>
+          <li><strong>Assignments:</strong> <span id="assignments"></span></li>
+          <li><strong>Projects:</strong> <span id="projects"></span></li>
+          <li><strong>Marks:</strong> <span id="marks"></span></li>
+          <li><strong>Timetable:</strong> <span id="timetable"></span></li>
+        </ul>
+      </div>
+      <div class="center">
+        <button class="back-btn" onclick="showPage('homePage')">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Faculty Login Page -->
+  <div id="facultyLogin" class="page">
+    <div class="container">
+      <h2>Faculty Login</h2>
+      <form id="facultyLoginForm">
+        <input type="text" id="facultyId" placeholder="Faculty ID" required>
+        <input type="password" id="facultyPass" placeholder="Password" required>
+        <button type="submit" class="form-btn">Login</button>
+      </form>
+      <div class="center">
+        <button class="back-btn" onclick="showPage('homePage')">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Faculty Dashboard -->
+  <div id="facultyDashboard" class="page">
+    <div class="container">
+      <h2>Faculty Dashboard</h2>
+      <div class="profile-box">
+        <h3>Student Issues</h3>
+        <div class="issue-box" id="issuesList">
+          <!-- Student issues will appear here -->
+        </div>
+      </div>
+      <div class="center">
+        <button class="back-btn" onclick="showPage('homePage')">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      document.getElementById(pageId).classList.add("active");
+    }
+
+    // Dummy student data
+    const students = {
+      "22BCE1234": {
+        password: "pass123",
+        name: "Ravi Kumar",
+        attendance: "92%",
+        classes: "CSE101, MAT201, PHY301",
+        assignments: "5/6 submitted",
+        projects: "AI Chatbot",
+        marks: "CGPA: 8.7",
+        timetable: "Mon-Fri, 9AM - 4PM",
+        issues: ["Laptop not working in lab", "Need extension for assignment 2"]
+      },
+      "23BCE5678": {
+        password: "abc123",
+        name: "Priya Sharma",
+        attendance: "88%",
+        classes: "CSE102, ENG202, CHEM205",
+        assignments: "3/5 submitted",
+        projects: "Web Development",
+        marks: "CGPA: 8.2",
+        timetable: "Mon-Fri, 10AM - 5PM",
+        issues: ["Project group not assigned", "Timetable clash with lab"]
+      }
+    };
+
+
+    const studentLoginForm = document.getElementById("studentLoginForm");
+    studentLoginForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const regNo = document.getElementById("regNo").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (students[regNo] && students[regNo].password === password) {
+        const s = students[regNo];
+        document.getElementById("studentName").innerText = s.name + " - Profile";
+        document.getElementById("attendance").innerText = s.attendance;
+        document.getElementById("classes").innerText = s.classes;
+        document.getElementById("assignments").innerText = s.assignments;
+        document.getElementById("projects").innerText = s.projects;
+        document.getElementById("marks").innerText = s.marks;
+        document.getElementById("timetable").innerText = s.timetable;
+        showPage("studentProfile");
+      } else {
+        alert("Invalid Registration Number or Password!");
+      }
+    });
+
+    // Faculty login
+    const facultyLoginForm = document.getElementById("facultyLoginForm");
+    facultyLoginForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const id = document.getElementById("facultyId").value.trim();
+      const pass = document.getElementById("facultyPass").value.trim();
+
+      // Just one faculty account for demo
+      if (id === "faculty1" && pass === "vitap") {
+        loadIssues();
+        showPage("facultyDashboard");
+      } else {
+        alert("Invalid Faculty ID or Password!");
+      }
+    });
+
+    // Load student issues for faculty
+    function loadIssues() {
+      const issuesList = document.getElementById("issuesList");
+      issuesList.innerHTML = "";
+      for (const regNo in students) {
+        const stu = students[regNo];
+        stu.issues.forEach(issue => {
+          const div = document.createElement("div");
+          div.className = "issue";
+          div.innerHTML = `<strong>${stu.name} (${regNo}):</strong> ${issue}`;
+          issuesList.appendChild(div);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
